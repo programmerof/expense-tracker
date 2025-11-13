@@ -1,0 +1,13 @@
+@model ExpenseTracker.Models.Expense
+@{
+    ViewData["Title"] = "Delete Expense";
+}
+<div class="container mt-4">
+    <h2>Delete Expense</h2>
+    <p>Are you sure you want to delete <strong>@Model.Title</strong>?</p>
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id"/>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="/Expenses" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

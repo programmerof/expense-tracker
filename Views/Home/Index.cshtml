@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    var recentExpenses = ViewBag.RecentExpenses as List<ExpenseTracker.Models.Expense>;
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Expense Tracker Dashboard</h1>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Expenses</h5>
+                    <p class="card-text fs-4">$@ViewBag.TotalAmount</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Number of Entries</h5>
+                    <p class="card-text fs-4">@ViewBag.Count</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <a href="/Expenses" class="btn btn-primary">View All Expenses</a>
+        <a href="/Expenses/Create" class="btn btn-success">Add New Expense</a>
+    </div>
+
+    <h3>Recent Expenses</h3>
+    @if(recentExpenses != null && recentExpenses.Count > 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var expense in recentExpenses)
+                {
+                    <tr>
+                        <td>@expense.Title</td>
+                        <td>@expense.Amount</td>
+                        <td>@expense.Category</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No expenses added yet.</p>
+    }
+</div>
